@@ -9,5 +9,6 @@ version '2.0.0'
 
 -- What to run
 client_scripts {
-    'alg_client.js'
+    'alg_client.js',
+    'disableDefaultCtrl.js'
 }

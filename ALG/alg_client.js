@@ -8,14 +8,14 @@ setInterval(function() {
         const veh = GetVehiclePedIsIn(PlayerPed);
         if (GetVehicleHasLandingGear(veh) && IsPlaneLandingGearIntact(veh) && GetEntityHeightAboveGround(veh) > 25.0 && GetLandingGearState(veh) == 0) {
             ControlLandingGear(veh, 1);
-            emit('chat:addMessage', {
-                args: [`Landing gear successfully attracted!`]
-            });
+            BeginTextCommandThefeedPost('STRING');
+            AddTextComponentSubstringPlayerName(`Landing gear successfully attracted!`);
+            EndTextCommandThefeedPostTicker(false, true);
         } else if (GetVehicleHasLandingGear(veh) && IsPlaneLandingGearIntact(veh) && GetEntityHeightAboveGround(veh) < 25.0 && GetLandingGearState(veh) != 0) {
             ControlLandingGear(veh, 2);
-            emit('chat:addMessage', {
-                args: [`Landing gear successfully retracted!`]
-            });
+            BeginTextCommandThefeedPost('STRING');
+            AddTextComponentSubstringPlayerName(`Landing gear successfully retracted!`);
+            EndTextCommandThefeedPostTicker(false, true);
         }
     }
 }, 1500);
