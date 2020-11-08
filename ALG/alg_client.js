@@ -4,14 +4,14 @@
 
 setInterval(function() {
     const PlayerPed = GetPlayerPed(-1);
-    if (IsPedInAnyPlane(PlayerPed)) {
+    if (IsPedInAnyPlane(PlayerPed) || IsPedInAnyHeli(PlayerPed)) {
         const veh = GetVehiclePedIsIn(PlayerPed);
-        if (GetVehicleHasLandingGear(veh) && IsPlaneLandingGearIntact(veh) && GetEntityHeightAboveGround(veh) > 25.0 && GetLandingGearState(veh) == 0) {
+        if (GetVehicleHasLandingGear(veh) && GetEntityHeightAboveGround(veh) > 25.0 && GetLandingGearState(veh) == 0) {
             ControlLandingGear(veh, 1);
             BeginTextCommandThefeedPost('STRING');
             AddTextComponentSubstringPlayerName(`Landing gear successfully attracted!`);
             EndTextCommandThefeedPostTicker(false, true);
-        } else if (GetVehicleHasLandingGear(veh) && IsPlaneLandingGearIntact(veh) && GetEntityHeightAboveGround(veh) < 25.0 && GetLandingGearState(veh) != 0) {
+        } else if (GetVehicleHasLandingGear(veh) && GetEntityHeightAboveGround(veh) < 25.0 && GetLandingGearState(veh) != 0) {
             ControlLandingGear(veh, 2);
             BeginTextCommandThefeedPost('STRING');
             AddTextComponentSubstringPlayerName(`Landing gear successfully retracted!`);
